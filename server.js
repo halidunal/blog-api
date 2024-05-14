@@ -1,13 +1,11 @@
 const express = require("express");
-
 const app = express();
-const router = express.Router();
+const routes = require("./src/router/index");
+const API_PREFIX = "/api";
 
-router.get("/api", (req, res) => {
-  res.send("Blog API");
-});
+app.use(`${API_PREFIX}/user`, routes.userRouter);
+app.use(`${API_PREFIX}/blog`, routes.blogRouter);
 
-app.use("/", router);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log("Server is running on port: " + PORT);
