@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const routes = require("./src/router/index");
+const routes = require("./src/routers/index");
 const API_PREFIX = "/api";
 
 app.use(`${API_PREFIX}/user`, routes.userRouter);
