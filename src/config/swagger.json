@@ -1,0 +1,37 @@
+{
+  "swagger": "2.0",
+  "info":{
+    "title": "API DOCS",
+    "description": "Example API",
+    "version": "0.1.9",
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/halidunal/blog-api?tab=MIT-1-ov-file"
+    }
+  },
+  "servers":{
+    "url": "http://localhost:5000/api-docs",
+    "description": "API DOCS"
+  },
+  "paths":{
+    "/api/getUsers":{
+      "get": {
+        "tags": ["Users"],
+        "summary": "Returns a list of users.",
+        "description": "GET USERS",
+        "responses":{
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/models/userModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
