@@ -2,6 +2,8 @@ const userModel = require("../models/userModel");
 const utils = require("../utils/utils");
 const userDataAccess = require("../data access/userDataAccess");
 const dtos = require("../dto/index");
+const mongoose = require("mongoose");
+
 const userService = {
   async create(req) {
     const { username, email, password, fullName, age } = req.body;
@@ -17,6 +19,16 @@ const userService = {
     });
     return await userDataAccess.create(user);
   },
+  async update(req) {
+    const { id } = req.params;
+    const { username, email, fullName, age } = req.body;
+    const user = await userModel.findById(id);
+    user.username = username,
+    user.email = email,
+    user.fullName = fullName,
+    user.age = age
+    return await userDataAccess.update(user);
+  },
   async getAll() {
     return await userDataAccess.getAll();
   },
@@ -26,7 +38,7 @@ const userService = {
   },
   async getById(req) {
     const { id } = req.params;
-    dtos.baseResponse.data = await userDataAccess.getById({ id });
+    dtos.baseResponse.data = await userDataAccess.getById(id);
     dtos.baseResponse.message = "success";
     return dtos.baseResponse; 
   },
