@@ -20,7 +20,6 @@ const UserSchema = mongoose.Schema({
   fullName: {
     type: String,
     required: true,
-    trim: true,
   },
   age: {
     type: Number,

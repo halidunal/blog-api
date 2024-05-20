@@ -19,9 +19,13 @@ const userService = {
   async getAll() {
     return await userDataAccess.getAll();
   },
-  async getById(req) {
+  async getByUsername(req) {
     const { email } = req.body;
-    return await userDataAccess.getById({ email });
+    return await userDataAccess.getByUsername({ email });
+  },
+  async getById(req) {
+    const { id } = req.params;
+    return await userDataAccess.getById({ id });
   },
 };
 

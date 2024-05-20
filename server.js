@@ -13,8 +13,8 @@ dotenv.config();
 app.use(helmet());
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use("/uploads/images", express.static(__dirname));
+app.use(express.static(path.join(__dirname, "public/upload/images")));
+app.use("public/uploads/images", express.static(__dirname));
 
 app.use(process.env.APP_API_PREFIX + "user", routes.userRouter);
 app.use(process.env.APP_API_PREFIX + "blog", routes.blogRouter);

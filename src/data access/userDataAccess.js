@@ -7,8 +7,11 @@ const userDataAccess = {
   async getAll() {
     return await userModel.find();
   },
-  async getById(email) {
-    return await userModel.findOne(email);
+  async getByUsername(email) {
+    return await userModel.get(email);
+  },
+  async getById(id) {
+    return await userModel.find(id);
   },
 };
 
