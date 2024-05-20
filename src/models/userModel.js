@@ -34,6 +34,6 @@ const UserSchema = mongoose.Schema({
       ref: "Blog",
     },
   ],
-});
+}, {timestamps: true, versionKey: false});
 
 module.exports = mongoose.model("user", UserSchema);

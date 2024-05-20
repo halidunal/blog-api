@@ -1,6 +1,7 @@
 const userModel = require("../models/userModel");
 const utils = require("../utils/utils");
 const userDataAccess = require("../data access/userDataAccess");
+const dtos = require("../dto/index");
 const userService = {
   async create(req) {
     const { username, email, password, fullName, age } = req.body;
@@ -25,7 +26,9 @@ const userService = {
   },
   async getById(req) {
     const { id } = req.params;
-    return await userDataAccess.getById({ id });
+    dtos.baseResponse.data = await userDataAccess.getById({ id });
+    dtos.baseResponse.message = "success";
+    return dtos.baseResponse; 
   },
 };
 
