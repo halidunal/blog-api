@@ -11,7 +11,7 @@ const userDataAccess = {
     return await userModel.find();
   },
   async getByUsername(email) {
-    return await userModel.find(email);
+    return await userModel.findOne(email);
   },
   async getById(id) {
     return await userModel.findById(id)

@@ -2,16 +2,15 @@ const userModel = require("../models/userModel");
 const utils = require("../utils/utils");
 const userDataAccess = require("../data access/userDataAccess");
 const dtos = require("../dto/index");
-const mongoose = require("mongoose");
+const {createToken} = require("../middlewares/authToken")
 
 const userService = {
   async create(req) {
     const { username, email, password, fullName, age } = req.body;
-
     const user = await new userModel({
       username,
       email,
-      password: utils.helper.hashString(password),
+      password: await utils.helper.hashPassword(password),
       fullName,
       age,
       avatar: "",
@@ -42,6 +41,18 @@ const userService = {
     dtos.baseResponse.message = "success";
     return dtos.baseResponse; 
   },
+  async signIn(req) {
+    const {email, password} = req.body;
+    const user = await userDataAccess.getByUsername({email});
+    if (!user) throw new APIError("No user found with matching email",401)
+    const passwordCompare = await utils.helper.comparePassword(password,user.password)
+    if(!passwordCompare) throw new APIError("The password is incorrect",401)
+    const token = await createToken({user});
+    dtos.baseResponse.data = user;
+    dtos.baseResponse.token = token;
+    dtos.baseResponse.message = "success";
+    return dtos.baseResponse;
+  }
 };
 
 module.exports = userService;

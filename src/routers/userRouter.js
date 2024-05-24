@@ -4,15 +4,18 @@ const {
   getUser,
   getUserById,
   createUser,
-  updateUser
+  updateUser,
+  signIn
 } = require("../controllers/userController");
+const { verifyToken } = require("../middlewares/authToken");
 
 const router = express.Router();
 
-router.get("/getUsers", getUsers);
+router.get("/getUsers",[verifyToken], getUsers);
 router.get("/getUser", getUser);
 router.get("/getUserById/:id", getUserById);
 router.post("/createUser", createUser);
 router.put("/updateUser/:id", updateUser);
+router.post("/signIn", signIn);
 
 module.exports = router;

@@ -50,10 +50,20 @@ const updateUser = async (req, res) => {
   }
 };
 
+const signIn = async (req,res,next) => {
+  try {
+    const auth = await userService.signIn(req)
+    res.status(201).json(auth);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
   getUsers,
   getUser,
   getUserById,
   createUser,
-  updateUser
+  updateUser,
+  signIn
 };
