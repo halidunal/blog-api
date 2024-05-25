@@ -41,9 +41,20 @@ const updateBlog = async (req, res) => {
   }
 };
 
+const updateFavCount = async (req, res) => {
+  try {
+    const blog = await blogService.updateFavCount(req);
+    res.status(201).json(blog);
+  } catch (error) {
+    logger.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getBlogs,
   getBlog,
   createBlog,
-  updateBlog
+  updateBlog,
+  updateFavCount
 };

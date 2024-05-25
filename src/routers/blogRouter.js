@@ -7,5 +7,6 @@ router.get("/getBlogs", getBlogs);
 router.get("/getBlog/:blogId", getBlog);
 router.post("/createBlog", createBlog);
 router.put("/updateBlog", updateBlog);
+router.put("/updateFavCount", updateFavCount);
 
 module.exports = router;
