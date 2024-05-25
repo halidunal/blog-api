@@ -16,6 +16,12 @@ const userDataAccess = {
   async getById(id) {
     return await userModel.findById(id)
   },
+  async getBlogs(userId){
+    return await userModel.findOne(userId).populate({
+      path: "blogs",
+      select: "title desciription"
+    })
+  }
 };
 
 module.exports = userDataAccess;

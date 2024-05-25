@@ -59,11 +59,21 @@ const signIn = async (req,res,next) => {
   }
 }
 
+const getBlogs = async(req,res) => {
+  try {
+    const blogs = await userService.getBlogs(req);
+    res.status(200).json(auth);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
   getUsers,
   getUser,
   getUserById,
   createUser,
   updateUser,
-  signIn
+  signIn,
+  getBlogs
 };

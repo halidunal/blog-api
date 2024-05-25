@@ -1,4 +1,4 @@
-const userModel = require("../models/blogModel");
+const blogModel = require("../models/blogModel");
 
 const blogDataAccess = {
   async create(blog) {
@@ -8,11 +8,14 @@ const blogDataAccess = {
     return await blog.save();
   },
   async getAll() {
-    return await userModel.find();
+    return await blogModel.find();
   },
   async getById(id) {
-    return await userModel.findById(id)
+    return await blogModel.findById(id)
   },
+  async updateFavCount(blog){
+    return await blog.save();
+  }
 };
 
 module.exports = blogDataAccess;

@@ -5,7 +5,8 @@ const {
   getUserById,
   createUser,
   updateUser,
-  signIn
+  signIn,
+  getBlogs
 } = require("../controllers/userController");
 const { verifyToken } = require("../middlewares/authToken");
 
@@ -17,5 +18,7 @@ router.get("/getUserById/:id", getUserById);
 router.post("/createUser", createUser);
 router.put("/updateUser/:id", updateUser);
 router.post("/signIn", signIn);
+router.post("/getBlogd/:userId", getBlogs);
+
 
 module.exports = router;

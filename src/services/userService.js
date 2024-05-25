@@ -52,6 +52,10 @@ const userService = {
     dtos.baseResponse.token = token;
     dtos.baseResponse.message = "success";
     return dtos.baseResponse;
+  },
+  async getBlogs(req){
+    const { userId } = req.params;
+    return await userDataAccess.getBlogs({_id: userId});
   }
 };
 

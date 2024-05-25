@@ -41,6 +41,12 @@ const userService = {
     dtos.baseResponse.message = "success";
     return dtos.baseResponse; 
   },
+  async updateFavCount(req){
+    const {blogId} = req.body;
+    const blog = await blogModel.findById(blogId);
+    blog.favCount = blog.favCount+1;
+    return await blogDataAccess.updateFavCount(blog);
+  }
 };
 
 module.exports = userService;
