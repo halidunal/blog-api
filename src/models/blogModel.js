@@ -17,14 +17,14 @@ const BlogSchema = mongoose.Schema({
     type: Date,
     default: new Date(),
   },
-  fav_count: {
+  favCount: {
     type: Number,
   },
   userId: {
     type: mongoose.Schema.ObjectId,
     ref: "user",
   },
-  tag: [
+  tags: [
     {
       type: String,
     },

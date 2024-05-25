@@ -7,7 +7,18 @@ const hashPassword = async (password) => {
 const comparePassword = async (reqPassword, userPassword) => {
   return await bcrypt.compare(reqPassword, userPassword)
 }
+
+const getHost = () => {
+  const dns = require("dns");
+  const os = require("os");
+  return new Promise((resolve) => {
+    dns.lookup(os.hostname(), (error, ip) => {
+      resolve(`http://${ip}`)
+    })
+  })
+}
 module.exports = {
   hashPassword,
-  comparePassword
+  comparePassword,
+  getHost
 };
